@@ -1,6 +1,13 @@
 import os
 from groq import Groq
-import google.generativeai as genai
+
+try:
+    import google.generativeai as genai
+    GEMINI_AVAILABLE = True
+except ImportError:
+    GEMINI_AVAILABLE = False
+    genai = None
+
 import httpx
 import logging
 from typing import List, Dict, Optional
@@ -27,6 +34,8 @@ class LLMProvider:
             self.model = "llama-3.3-70b-versatile"  # Updated to supported model
             
         elif provider == "gemini":
+            if not GEMINI_AVAILABLE:
+                raise ValueError("google-generativeai not installed")
             api_key = os.getenv("GOOGLE_API_KEY")
             if not api_key:
                 raise ValueError("GOOGLE_API_KEY not found in environment")
