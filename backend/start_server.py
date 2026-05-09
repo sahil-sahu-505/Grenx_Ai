@@ -10,6 +10,7 @@ load_dotenv()
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
+    is_production = os.getenv("RENDER", False)  # Render sets this env var
     
     print("\n🚀 Starting AI Voice Agent Server")
     print("=" * 50)
@@ -20,6 +21,7 @@ if __name__ == "__main__":
     print(f"   • LLM: {os.getenv('LLM_PROVIDER', 'ollama')}")
     print(f"   • Database: PostgreSQL (Neon)")
     print(f"   • TTS: Edge-TTS")
+    print(f"   • Environment: {'Production' if is_production else 'Development'}")
     print("\n⏸️  Press Ctrl+C to stop\n")
     print("=" * 50)
     
@@ -27,6 +29,6 @@ if __name__ == "__main__":
         "app.main:app",
         host="0.0.0.0",
         port=port,
-        reload=True,
+        reload=not is_production,  # Disable reload in production to save memory
         log_level="info"
     )
