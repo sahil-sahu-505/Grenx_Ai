@@ -1,0 +1,130 @@
+.chat h2 {
+  margin-bottom: 20px;
+  color: #212529;
+}
+
+.chat-options {
+  margin-bottom: 15px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.chat-container {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 25px;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+}
+
+.message {
+  margin-bottom: 18px;
+  padding: 14px 20px;
+  border-radius: 20px;
+  max-width: 75%;
+  animation: slideIn 0.3s ease;
+  line-height: 1.5;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-15px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.message.user {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  margin-left: auto;
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+}
+
+.message.agent {
+  background: #e9ecef;
+  color: #212529;
+}
+
+.message.typing {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.sources {
+  font-size: 0.85em;
+  margin-top: 8px;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.chat-input-container {
+  display: flex;
+  gap: 12px;
+}
+
+.chat-input-container input {
+  flex: 1;
+  padding: 14px 20px;
+  border: 2px solid #e9ecef;
+  border-radius: 30px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.chat-input-container input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.chat-input-container input:disabled {
+  background: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

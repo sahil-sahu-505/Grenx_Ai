@@ -1,0 +1,148 @@
+.voice-call h2 {
+  margin-bottom: 20px;
+  color: #212529;
+}
+
+.call-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #495057;
+  font-size: 15px;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-group select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.call-avatar {
+  width: 220px;
+  height: 220px;
+  margin: 40px auto;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+}
+
+.call-avatar:hover {
+  transform: scale(1.05);
+}
+
+.avatar-icon {
+  font-size: 110px;
+}
+
+.call-avatar.calling .avatar-icon {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.call-status {
+  font-size: 1.6em;
+  margin: 25px 0;
+  font-weight: 600;
+}
+
+.call-controls {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.call-btn {
+  padding: 18px 36px;
+  font-size: 18px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.call-btn-start {
+  background: #28a745;
+  color: white;
+}
+
+.call-btn-start:hover {
+  background: #218838;
+  transform: scale(1.08);
+}
+
+.call-btn-end {
+  background: #dc3545;
+  color: white;
+}
+
+.call-btn-end:hover {
+  background: #c82333;
+  transform: scale(1.08);
+}
+
+.call-transcript {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 30px;
+  margin-top: 40px;
+  max-height: 450px;
+  overflow-y: auto;
+  text-align: left;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.call-transcript h3 {
+  margin-bottom: 15px;
+}
+
+.transcript-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.transcript-item {
+  padding: 16px;
+  border-radius: 10px;
+  line-height: 1.6;
+}
+
+.transcript-item.user {
+  background: #e7f3ff;
+  border-left: 4px solid #667eea;
+}
+
+.transcript-item.ai {
+  background: #f0f0f0;
+  border-left: 4px solid #764ba2;
+}

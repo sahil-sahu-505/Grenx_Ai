@@ -1,0 +1,42 @@
+# Core Framework
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+
+# Authentication & Security
+pyjwt
+bcrypt
+python-jose[cryptography]
+
+# Voice Pipeline
+openai-whisper
+edge-tts
+# pipecat-ai==0.0.30  # Optional, not needed for basic functionality
+
+# LLM Integration
+groq
+google-generativeai
+langchain
+langchain-community
+
+# Database & Vector Store
+supabase
+pgvector
+psycopg2-binary
+
+# Telephony
+twilio
+
+# Utilities
+python-dotenv
+httpx
+aiofiles
+python-multipart
+deep-translator
+psutil
+
+# Audio Processing
+soundfile
+numpy
+sentence-transformers

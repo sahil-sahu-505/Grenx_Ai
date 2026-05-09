@@ -1,0 +1,373 @@
+/* Call Detail Modal */
+.call-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.call-detail-modal {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.8em;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.modal-content {
+  padding: 30px;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-size: 1.1em;
+}
+
+/* Call Info Section */
+.call-info-section {
+  margin-bottom: 25px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-item .label {
+  font-size: 0.85em;
+  color: #666;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-item .value {
+  font-size: 1.1em;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Metrics Section */
+.metrics-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.metric-card {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  text-align: center;
+}
+
+.metric-label {
+  font-size: 0.85em;
+  color: #666;
+  font-weight: 500;
+}
+
+.sentiment-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9em;
+  text-transform: capitalize;
+}
+
+.sentiment-badge.positive {
+  background: #d4edda;
+  color: #155724;
+}
+
+.sentiment-badge.negative {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.sentiment-badge.neutral {
+  background: #e2e3e5;
+  color: #383d41;
+}
+
+.resolution-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.resolution-badge.resolved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.resolution-badge.unresolved {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.confidence-value {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #667eea;
+}
+
+/* Transcript Section */
+.transcript-section {
+  margin-bottom: 25px;
+}
+
+.transcript-section h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.transcript-messages {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.message {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.message.user {
+  border-left: 4px solid #667eea;
+}
+
+.message.assistant {
+  border-left: 4px solid #48bb78;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.role-badge {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #333;
+}
+
+.timestamp {
+  font-size: 0.8em;
+  color: #999;
+}
+
+.message-content {
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Chat Bubbles (fallback) */
+.chat-bubble {
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  max-width: 80%;
+}
+
+.chat-bubble.user {
+  background: #e3f2fd;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.chat-bubble.assistant {
+  background: #f1f8e9;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.bubble-header {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.bubble-content {
+  color: #333;
+  line-height: 1.6;
+}
+
+/* CRM Section */
+.crm-section {
+  margin-bottom: 25px;
+}
+
+.crm-section h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.crm-actions-list {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.crm-action-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.crm-action-item:last-child {
+  margin-bottom: 0;
+}
+
+.action-icon {
+  color: #48bb78;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.action-text {
+  color: #333;
+}
+
+/* Audio Section */
+.audio-section {
+  margin-bottom: 25px;
+}
+
+.audio-section h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.audio-player {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .call-detail-modal {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-section {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-bubble {
+    max-width: 90%;
+  }
+}
