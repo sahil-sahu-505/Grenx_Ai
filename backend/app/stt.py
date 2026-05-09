@@ -1,5 +1,10 @@
-import whisper
-import numpy as np
+try:
+    import whisper
+    import numpy as np
+    WHISPER_AVAILABLE = True
+except ImportError:
+    WHISPER_AVAILABLE = False
+    
 import logging
 from typing import Optional
 
@@ -14,6 +19,11 @@ class WhisperSTT:
         Models: tiny, base, small, medium, large
         base is good balance of speed and accuracy
         """
+        if not WHISPER_AVAILABLE:
+            logger.warning("Whisper not available - STT disabled")
+            self.model = None
+            return
+            
         logger.info(f"Loading Whisper {model_size} model...")
         self.model = whisper.load_model(model_size)
         logger.info("Whisper model loaded successfully")
@@ -29,6 +39,10 @@ class WhisperSTT:
         Returns:
             Transcribed text
         """
+        if not WHISPER_AVAILABLE or not self.model:
+            logger.warning("Whisper not available")
+            return ""
+            
         try:
             # Convert bytes to numpy array
             audio_np = np.frombuffer(audio_data, dtype=np.int16).astype(np.float32) / 32768.0
@@ -50,6 +64,9 @@ class WhisperSTT:
     
     async def transcribe_file(self, audio_path: str, language: Optional[str] = None) -> str:
         """Transcribe audio file"""
+        if not WHISPER_AVAILABLE or not self.model:
+            return ""
+            
         try:
             result = self.model.transcribe(audio_path, language=language)
             return result["text"].strip()
