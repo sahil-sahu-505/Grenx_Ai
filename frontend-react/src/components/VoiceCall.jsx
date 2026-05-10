@@ -160,9 +160,10 @@ function VoiceCall() {
     console.log('Speech recognition is supported')
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
     recognitionRef.current = new SpeechRecognition()
-    recognitionRef.current.continuous = false
-    recognitionRef.current.interimResults = false
+    recognitionRef.current.continuous = true  // Changed to true for better listening
+    recognitionRef.current.interimResults = true  // Changed to true to show interim results
     recognitionRef.current.lang = selectedLanguage === 'auto' ? 'en-US' : selectedLanguage
+    recognitionRef.current.maxAlternatives = 1
     
     console.log('Recognition configured with language:', recognitionRef.current.lang)
 
@@ -175,8 +176,18 @@ function VoiceCall() {
     }
 
     recognitionRef.current.onresult = async (event) => {
-      const transcript = event.results[event.results.length - 1][0].transcript.trim()
-      console.log('✅ User said:', transcript)
+      // Get the latest result
+      const result = event.results[event.results.length - 1]
+      const transcript = result[0].transcript.trim()
+      
+      // Only process final results
+      if (!result.isFinal) {
+        console.log('Interim:', transcript)
+        setStatusText(`🎤 Hearing: "${transcript}"`)
+        return
+      }
+      
+      console.log('✅ User said (final):', transcript)
 
       // Ignore if AI is speaking or transcript is too short
       if (isSpeakingRef.current) {
@@ -184,17 +195,9 @@ function VoiceCall() {
         return
       }
       
-      if (transcript.length < 3) {
+      if (transcript.length < 2) {
         console.log('⏭️ Ignoring - transcript too short')
         return
-      }
-
-      // Stop recognition immediately to prevent echo
-      try {
-        recognitionRef.current.stop()
-        isRecognitionRunning.current = false
-      } catch (e) {
-        console.log('Stop error:', e)
       }
 
       setStatusText('✅ Heard you! Processing...')
